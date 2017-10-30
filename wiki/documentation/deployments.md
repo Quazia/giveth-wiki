@@ -62,6 +62,9 @@ The initial MYD deployment is at `0xf7e983781609012307f2514f63d526d83d24f466`. T
 
 Alternatively you could easily deploy your own fresh MiniMeToken.
 
+---
+
+Here are the paremters we're using when calling `createCloneToke`.
 1. _Cloned Token Name_ -- MyEtherWallet Donations Token
   
   Fairly self explanatory.
@@ -82,6 +85,8 @@ Alternatively you could easily deploy your own fresh MiniMeToken.
   
   This was previously true. Disabling transfers helps allow for a token to be purely for governance and not for speculation. There are other reasons to disable this but preventing speculation is a pretty good one.
 
+---
+
 I set the GWEI costs to .1 because I’m cheap. Time to go get a glass of water while Ethereum deploys an ENTIRE CLONED VERSION of the MYD token for approximately the same amount that a credit card company charges for transaction fees on a cup of coffee (.07 cents).
 
 Now that we’ve cloned the token we can get the address of the newly cloned token from the Event Logs of the [`createCloneToken` transaction](https://etherscan.io/tx/0x29cb7595d7c3d9cc743f44bed58ada98514db6643bcdb515dedf0e3b154dc7ac).
@@ -98,8 +103,9 @@ By default the creator of the new cloned token will start as the controller. We�
 
 Now that we’ve cloned our token lets get the Vault setup. There are currently two main vaults in the Giveth ecosystem, this deployment is for a classic vault. In the future LPVaults will play a major role in the giveth ecosystem so keep in mind this is a *classic* Vault and not a *Liquid Pledging* Vault. This is where funds are kept before they’re paid out for milestones. 
 
-For our `Vault` we’ll be using the following parameters:
+---
 
+For our `Vault` we’ll be using the following parameters:
 1. _Escape Caller_ -- “0xDdA882a62600C452419145781e45052fdC06382C”
 
   This is the individual who can escape token funds to the contract. As triggering payable with token transfers isn’t currently possible under ERC20, token funds are simply escaped to a multi-sig wallet when this trusted individual triggers an escape.
@@ -124,6 +130,8 @@ For our `Vault` we’ll be using the following parameters:
 
   The amount of time the security guard can delay a payment.
 
+---
+
 **Bim** *Bam* ***Boom*** we’ve got ourselves a vault!
 
 Deployed Vault -- [`0x598ab825d607ace3b00d8714c0a141c7ae2e6822`](https://etherscan.io/address/0x598ab825d607ace3b00d8714c0a141c7ae2e6822#code)
@@ -135,8 +143,9 @@ The `Campaign` is generally used as the token controller for your `MiniMeToken`.
 
 This is how tokens get minted.
 
-Using our example of the My Ether Wallet campaign we’ll be using the following parameters:
+---
 
+Using our example of the My Ether Wallet campaign we’ll be using the following parameters:
 1. _Escape Hatch Caller_ -- "0xDdA882a62600C452419145781e45052fdC06382C"
   
   This should look familiar from the vault, same deal.
@@ -153,11 +162,9 @@ Using our example of the My Ether Wallet campaign we’ll be using the following
   
   A lazy Sunday afternoon in March 2025 seems as good a time as any to end the campaign, hopefully MEW will have raised 1,000,000 ether by then ; ]
 
-
 5. _Maximum Funding_ -- "1000000000000000000000000"
   
   Funding is expressed in WEI. The version we’re deploying is hard capped at 1,000,000 Ether in the code but this is trivial to change. We’re setting the maximum funding to the maximum possible in our code: 1,000,000 Ether or 1,000,000,000,000,000,000,000,000 wei. NO WEI!!
-
   
   Remember this is a #BigNumber so “put it in quotes” or the compiler will look at you funny.
 
@@ -165,11 +172,11 @@ Using our example of the My Ether Wallet campaign we’ll be using the following
 
   This is the vault we just deployed. Seems good.
 
-
 7. _Token Address_ --  0xa5a8ab2c69c27169a93fb52b8d52072ca61a4cdc
 
   This is the address of the cloned token. Spiffy.
 
+---
 
 Eventually the owner of this contract needs to be changed to 
 0xDdA882a62600C452419145781e45052fdC06382C but for now I’ll hold on to it to make sure everything is all set to go.
@@ -181,6 +188,8 @@ Deployed Campaign -- [`0x809af635bb8f1541eae4ecd00351c08700b5b476`](https://ethe
 
 #### MilestoneTracker 
 While the `MilestoneTracker` contract is complex deploying it is very simple!
+
+---
 
 To get the `MilestoneTracker` working we'll use the following parameters:
 1. _arbitrator_ -- 0xDdA882a62600C452419145781e45052fdC06382C 
@@ -195,8 +204,9 @@ To get the `MilestoneTracker` working we'll use the following parameters:
   
   This is wherever the milestones will pay out to.
 
+---
 
-Deployed MilestoneTracker -- [0xb438202e27991b04be6cae51e9ca4c15ddcbac55](https://etherscan.io/address/0xb438202e27991b04be6cae51e9ca4c15ddcbac55#code)
+Deployed MilestoneTracker -- [`0xb438202e27991b04be6cae51e9ca4c15ddcbac55`](https://etherscan.io/address/0xb438202e27991b04be6cae51e9ca4c15ddcbac55#code)
 
 #### Finishing Steps
 So now all of the contracts should be deployed, all that’s left is to transfer ownership of  [the Vault](https://etherscan.io/address/0x598ab825D607ACE3b00d8714c0A141c7aE2E6822#readContract) and the [GivethCampaign](https://etherscan.io/address/0x809af635bb8f1541eae4ecd00351c08700b5b476#readContract). We also need to  change the controller in the [MYD token](https://etherscan.io/address/0xa5a8ab2c69c27169a93fb52b8d52072ca61a4cdc#code) to the [GivethCampaign](https://etherscan.io/address/0x809af635bb8f1541eae4ecd00351c08700b5b476#readContract).
@@ -226,4 +236,4 @@ So now all of the contracts should be deployed, all that’s left is to transfer
 
 4. Deployed Campaign -- [`0x809af635bb8f1541eae4ecd00351c08700b5b476`](https://etherscan.io/address/0x809af635bb8f1541eae4ecd00351c08700b5b476#readContract)
 
-5. Deployed MilestoneTracker -- [0xb438202e27991b04be6cae51e9ca4c15ddcbac55](https://etherscan.io/address/0xb438202e27991b04be6cae51e9ca4c15ddcbac55#code)
+5. Deployed MilestoneTracker -- [`0xb438202e27991b04be6cae51e9ca4c15ddcbac55`](https://etherscan.io/address/0xb438202e27991b04be6cae51e9ca4c15ddcbac55#code)
