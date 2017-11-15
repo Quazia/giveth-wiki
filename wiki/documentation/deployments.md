@@ -53,8 +53,7 @@ The Token Factory allows you to clone the token to upgrade, create a vote, offer
 
 When setting up a campaign this is the very first step since it’s not in any way linked to any campaign. Generally speaking it’s a good idea to use the newest Token Factory available.
 
-Deployed TokenFactory -- [`0x58474228ffeebf58758bb661a4280df6aa433371`](https://etherscan.io/address/0x58474228ffeebf58758bb661a4280df6aa433371#code)
-
+Deployed TokenFactory -- [` 0x596964Ac32F690d34CaC020545a63754251aBaCd`](https://etherscan.io/address/0x596964Ac32F690d34CaC020545a63754251aBaCd#code)
 
 #### MYD token Contract
 For this example we’re going to show you the power of upgrading a MiniMeToken!
@@ -91,7 +90,7 @@ I set the GWEI costs to .1 because I’m cheap. Time to go get a glass of water 
 
 Now that we’ve cloned the token we can get the address of the newly cloned token from the Event Logs of the [`createCloneToken` transaction](https://etherscan.io/tx/0x29cb7595d7c3d9cc743f44bed58ada98514db6643bcdb515dedf0e3b154dc7ac).
 
-Deployed MiniMeToken -- [`0x4ff752798f2c612ee4843057ad961bcb43e37c03`](https://etherscan.io/address/0x4ff752798f2c612ee4843057ad961bcb43e37c03#code)
+Deployed MiniMeToken -- [`0xe6e9282e453c7c1e2eea400a04ee93c4cb096beb`](https://etherscan.io/address/0xe6e9282e453c7c1e2eea400a04ee93c4cb096beb#code)
 
 WHOA! A whole new token!??!
 
@@ -172,7 +171,7 @@ Using our example of the My Ether Wallet campaign we’ll be using the following
 
   This is the vault we just deployed. Seems good.
 
-7. _Token Address_ --  "0x4ff752798f2c612ee4843057ad961bcb43e37c03"
+7. _Token Address_ --  "0xe6e9282e453c7c1e2eea400a04ee93c4cb096beb"
 
   This is the address of the cloned token. Spiffy.
 
@@ -209,7 +208,7 @@ To get the `MilestoneTracker` working we'll use the following parameters:
 Deployed MilestoneTracker -- [`0xb438202e27991b04be6cae51e9ca4c15ddcbac55`](https://etherscan.io/address/0xb438202e27991b04be6cae51e9ca4c15ddcbac55#code)
 
 #### Finishing Steps
-So now all of the contracts should be deployed, all that’s left is to transfer ownership of  [the Vault](https://etherscan.io/address/0x598ab825D607ACE3b00d8714c0A141c7aE2E6822#readContract) and the [GivethCampaign](https://etherscan.io/address/0x98cdcf8cd44c216fe370cf5c420d9630ae916fc4#readContract). We also need to  change the controller in the [MYD token](https://etherscan.io/address/0x4ff752798f2c612ee4843057ad961bcb43e37c03#code) to the [GivethCampaign](https://etherscan.io/address/0x98cdcf8cd44c216fe370cf5c420d9630ae916fc4#readContract).
+So now all of the contracts should be deployed, all that’s left is to transfer ownership of  [the Vault](https://etherscan.io/address/0x598ab825D607ACE3b00d8714c0A141c7aE2E6822#readContract) and the [GivethCampaign](https://etherscan.io/address/0x98cdcf8cd44c216fe370cf5c420d9630ae916fc4#readContract). We also need to  change the controller in the [MYD token](https://etherscan.io/address/0xe6e9282e453c7c1e2eea400a04ee93c4cb096beb#code) to the [GivethCampaign](https://etherscan.io/address/0x98cdcf8cd44c216fe370cf5c420d9630ae916fc4#readContract).
 
 
 
@@ -228,9 +227,9 @@ So now all of the contracts should be deployed, all that’s left is to transfer
 
 #### All Deployed Contracts
 
-1. Deployed TokenFactory -- [`0x58474228ffeebf58758bb661a4280df6aa433371`](https://etherscan.io/address/0x58474228ffeebf58758bb661a4280df6aa433371#code)
+1. Deployed TokenFactory -- [`0x596964Ac32F690d34CaC020545a63754251aBaCd`](https://etherscan.io/address/0x596964Ac32F690d34CaC020545a63754251aBaCd#code)
 
-2. Deployed MiniMeToken -- [`0x4ff752798f2c612ee4843057ad961bcb43e37c03`](https://etherscan.io/address/0x4ff752798f2c612ee4843057ad961bcb43e37c03#code)
+2. Deployed MiniMeToken -- [`0xe6e9282e453c7c1e2eea400a04ee93c4cb096beb`](https://etherscan.io/address/0xe6e9282e453c7c1e2eea400a04ee93c4cb096beb#code)
 
 3. Deployed Vault -- [`0x598ab825d607ace3b00d8714c0a141c7ae2e6822`](https://etherscan.io/address/0x598ab825d607ace3b00d8714c0a141c7ae2e6822#code)
 
