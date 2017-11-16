@@ -182,7 +182,7 @@ Eventually the owner of this contract needs to be changed to
 
 When this contract receives ether it creates MYD and sends it to the Giver. If tokens are sent to this address they’re handled through the escape hatch so no more worries about losing tokens forever!
 
-Deployed Campaign -- [`0x98cdcf8cd44c216fe370cf5c420d9630ae916fc4`](https://etherscan.io/address/0x98cdcf8cd44c216fe370cf5c420d9630ae916fc4#readContract)
+Deployed Campaign -- [`0x486681Bb877703e4385c8fe9688Bff776Cbc11c4`](https://etherscan.io/address/0x486681Bb877703e4385c8fe9688Bff776Cbc11c4#readContract)
 
 
 #### MilestoneTracker 
@@ -208,7 +208,7 @@ To get the `MilestoneTracker` working we'll use the following parameters:
 Deployed MilestoneTracker -- [`0xb438202e27991b04be6cae51e9ca4c15ddcbac55`](https://etherscan.io/address/0xb438202e27991b04be6cae51e9ca4c15ddcbac55#code)
 
 #### Finishing Steps
-So now all of the contracts should be deployed, all that’s left is to transfer ownership of  [the Vault](https://etherscan.io/address/0x598ab825D607ACE3b00d8714c0A141c7aE2E6822#readContract) and the [GivethCampaign](https://etherscan.io/address/0x98cdcf8cd44c216fe370cf5c420d9630ae916fc4#readContract). We also need to  change the controller in the [MYD token](https://etherscan.io/address/0xe6e9282e453c7c1e2eea400a04ee93c4cb096beb#code) to the [GivethCampaign](https://etherscan.io/address/0x98cdcf8cd44c216fe370cf5c420d9630ae916fc4#readContract).
+So now all of the contracts should be deployed, all that’s left is to transfer ownership of  [the Vault](https://etherscan.io/address/0x598ab825D607ACE3b00d8714c0A141c7aE2E6822#readContract) and the [GivethCampaign](https://etherscan.io/address/0x486681Bb877703e4385c8fe9688Bff776Cbc11c4#readContract). We also need to  change the controller in the [MYD token](https://etherscan.io/address/0xe6e9282e453c7c1e2eea400a04ee93c4cb096beb#code) to the [GivethCampaign](https://etherscan.io/address/0x486681Bb877703e4385c8fe9688Bff776Cbc11c4#readContract).
 
 
 
@@ -233,6 +233,6 @@ So now all of the contracts should be deployed, all that’s left is to transfer
 
 3. Deployed Vault -- [`0x598ab825d607ace3b00d8714c0a141c7ae2e6822`](https://etherscan.io/address/0x598ab825d607ace3b00d8714c0a141c7ae2e6822#code)
 
-4. Deployed Campaign -- [`0x98cdcf8cd44c216fe370cf5c420d9630ae916fc4`](https://etherscan.io/address/0x98cdcf8cd44c216fe370cf5c420d9630ae916fc4#readContract)
+4. Deployed Campaign -- [`0x486681Bb877703e4385c8fe9688Bff776Cbc11c4`](https://etherscan.io/address/0x486681Bb877703e4385c8fe9688Bff776Cbc11c4#readContract)
 
 5. Deployed MilestoneTracker -- [`0xb438202e27991b04be6cae51e9ca4c15ddcbac55`](https://etherscan.io/address/0xb438202e27991b04be6cae51e9ca4c15ddcbac55#code)
