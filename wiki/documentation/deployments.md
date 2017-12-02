@@ -149,7 +149,7 @@ For our `Vault` we’ll be using the following parameters:
 
 Deployed Vault -- [`0x598ab825d607ace3b00d8714c0a141c7ae2e6822`](https://etherscan.io/address/0x598ab825d607ace3b00d8714c0a141c7ae2e6822#code)
 
-After the `milestoneTracker` is deployed, we will add it to the `allowedSpender[]` whitelist; this will need to be handled by owner which is me, @quazia, but after the MilestoneTracker has been deployed the Owner must be set to: 0xDdA882a62600C452419145781e45052fdC06382C
+The `milestoneTracker` was added to the `allowedSpender[]` whitelist; but the Owner still must be set to: 0xDdA882a62600C452419145781e45052fdC06382C
 
 #### Campaign, Token Controller! 
 The `Campaign` is generally used as the token controller for your `MiniMeToken`.
