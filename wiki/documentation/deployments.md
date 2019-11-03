@@ -1,8 +1,22 @@
 # Giveth Deployments
- 
-## Giveth Fund Forwarder
- 
+
+## Giveth Fund Forwarder - 0x5ADF43DD006c6C36506e2b2DFA352E60002d22Dc
+
 @quazia and @griff developed a quick fix to prevent the loss of tokens donated to Giveth.
+
+The source code for the FundForwarder can be found [here](https://github.com/Giveth/fund-forwarder/blob/master/contracts/FundForwarder.sol)
+
+It's ABI and source code can also be found on [etherscan](https://etherscan.io/address/0x5ADF43DD006c6C36506e2b2DFA352E60002d22Dc#code)
+
+It had 3 constructor parameters, which for our purposes are set as:
+
+`_beneficiary` = 0x8702b8D7a1EeFEc7E54636E26A9323Dc96A8Dc25 (The current Giveth campaign address)
+
+`_escapeHatchCaller` = 0x839395e20bbB182fa440d08F850E6c7A8f6F0780 [(Griff's Address)](https://twitter.com/thegrifft/status/755401659606528005)
+
+`_escapeHatchDestination` = 0x8f951903c9360345b4e1b536c7f5ae8f88a64e79 (The Giveth Multisig)
+
+
 
 ## MyEtherWallet's Giveth Campaign
 
@@ -30,7 +44,7 @@ The Main Donation address is the `Campaign` contract which receives Ether and ge
 |                  |          |                  |
 |   TokenFactory   |          |   MiniMeToken    |
 |                  <----------+                  |
-|  0x63a5aeb18...  |          |  0x453f473b2...  |
+|  0x596964ac3...  |          |  0xe6E9282E4...  |
 |                  |          |                  |
 +------------------+          +-------^--+-------+
                                       |  |
@@ -41,7 +55,7 @@ The Main Donation address is the `Campaign` contract which receives Ether and ge
                               |                  |          |                  |
                               |     Campaign     |          |       Vault      |
                               |                  +---------->                  |
-                              |  0xa5a8ab2c6...  |          |  0x598ab825d...  |
+                              |  0x486681bb8...  |          |  0x598ab825d...  |
                               |                  |          |                  |
                               +------------------+          +------------------+
 ```
@@ -63,14 +77,14 @@ Alternatively you could easily deploy your own fresh MiniMeToken.
 
 ---
 
-Here are the paremters we're using when calling `createCloneToke`.
+Here are the paremters we're using when calling `createCloneToken`.
 1. _Cloned Token Name_ -- MyEtherWallet Donations Token
   
   Fairly self explanatory.
 
 2. _Decimals_ -- 18 
   
-  This is changed from 16. This means that MYD will be 1 to 1 with ether as Ether is an 18 decimal token.
+  This is changed from 16. This means that MYD will be 1 to 1 with ether as ether is an 18 decimal token.
 
 3. _Symbol_ -- MYD 
   
@@ -105,15 +119,15 @@ Now that we’ve cloned our token lets get the Vault setup. There are currently 
 ---
 
 For our `Vault` we’ll be using the following parameters:
-1. _Escape Caller_ -- “0xDdA882a62600C452419145781e45052fdC06382C”
+1. _Escape Hatch Caller_ -- “0x839395e20bbb182fa440d08f850e6c7a8f6f0780”
 
-  This is the individual who can escape token funds to the contract. As triggering payable with token transfers isn’t currently possible under ERC20, token funds are simply escaped to a multi-sig wallet when this trusted individual triggers an escape.
+  This is the individual  who can escape token funds to the contract. As triggering payable with token transfers isn’t currently possible under ERC20, token funds are simply escaped to a multi-sig wallet when this trusted individual triggers an escape.
 
 2. _Escape Hatch Destination_ -- “0x97B47fE3Ed8d68Ee4b930b27598d08097F8eA9C6”
 
   This is the individual who can escape token funds to the contract. As triggering payable with token transfers isn’t currently possible under ERC20, token funds are simply escaped to a multi-sig wallet when this trusted individual triggers an escape.
 
-3. _Absolute Minimum TIme Lock_ -- 3600 (1 hour minimum delay that can be set)
+3. _Absolute Minimum Time Lock_ -- 3600 (1 hour minimum delay that can be set)
 
   Once a payout has been authorized it has to wait at least one hour before it’s collected. You know for security and stuff.
 
@@ -121,7 +135,7 @@ For our `Vault` we’ll be using the following parameters:
 
   Default Time Lock, pretty straight forward.
 
-5. _Security Guard_ -- “0x839395e20bbb182fa440d08f850e6c7a8f6f0780”
+5. _Security Guard_ -- “0x1dba1131000664b884a1ba238464159892252d3a”
 
   This person can delay payouts. That’s it, they just delay payments so presumably the owner can intervene in the case of a security issue.
 
@@ -135,7 +149,7 @@ For our `Vault` we’ll be using the following parameters:
 
 Deployed Vault -- [`0x598ab825d607ace3b00d8714c0a141c7ae2e6822`](https://etherscan.io/address/0x598ab825d607ace3b00d8714c0a141c7ae2e6822#code)
 
-After the `milestoneTracker` is deployed, we will add it to the `allowedSpender[]` whitelist; this will need to be handled by owner
+The `milestoneTracker` was added to the `allowedSpender[]` whitelist; but the Owner still must be set to: 0xDdA882a62600C452419145781e45052fdC06382C
 
 #### Campaign, Token Controller! 
 The `Campaign` is generally used as the token controller for your `MiniMeToken`.
@@ -201,7 +215,7 @@ To get the `MilestoneTracker` working we'll use the following parameters:
 
 3. _recipient_ -- 0x839395e20bbb182fa440d08f850e6c7a8f6f0780 
   
-  This is wherever the milestones will pay out to.
+  This is the person that creates the Milestones, Griff is going to do it because it is a painful process.
 
 ---
 
@@ -213,17 +227,25 @@ So now all of the contracts should be deployed, all that’s left is to transfer
 
 
 #### Main Addresses Used
-1. Secure Ledger -- 0xb8Bed6a570cA87d03E4E386f27D14822179d10f9
+1. MEW's Secure Key -- 0xb8Bed6a570cA87d03E4E386f27D14822179d10f9
   
   You will use this to approve milestones on main net.
 
-2. Super Secure Ledger -- 0xDdA882a62600C452419145781e45052fdC06382C
+2. MEW's Super Secure Key -- 0xDdA882a62600C452419145781e45052fdC06382C
   
-  Can call the escapeHatch and take tokens and ether out at will.
+  Can call the escapeHatch and take tokens and ether out at will, the key with all the power.
 
-3. Cold storage -- 0x97B47fE3Ed8d68Ee4b930b27598d08097F8eA9C6
+3. MEW's Cold storage -- 0x97B47fE3Ed8d68Ee4b930b27598d08097F8eA9C6
   
-  The escapeHatchDestination; Where tokens and ETH go when there is an issue.
+  The escapeHatchDestination; where tokens and ETH go if there is an issue.
+
+4. Griff's Curator Key -- 0x839395e20bbb182fa440d08f850e6c7a8f6f0780
+
+  Facilitating securing these contracts and working with the Milestones.
+
+5. Jordi's WHG Key -- 0x1dba1131000664b884a1ba238464159892252d3a
+
+  Facilitating securing these contracts.
 
 #### All Deployed Contracts
 
